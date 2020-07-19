@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Algorithm," />
+  <meta name="keywords" content="OS," />
 
 
 
@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="My First Post">
+<meta name="description" content="基本特征： 并发 并发是指宏观上在一段时间内同时运行多个程序，而并行则指同一时刻能运行多个指令 并行需要硬件支持，如多流水线、多核处理器或者分布式计算系统 操作系统通过引入进程和线程，使得程序能够并发运行  共享 共享是指系统中的资源可以被多个并发进程共同使用 有两种共享方式：互斥共享和同时共享 互斥共享的资源被称为临界资源，如打印机，在同一时刻只允许一个进程访问，需要同步机制来实现互斥访问  虚">
 <meta property="og:type" content="article">
-<meta property="og:title" content="My First Post">
-<meta property="og:url" content="http://yoursite.com/2020/07/19/My-First-Post/index.html">
+<meta property="og:title" content="操作系统概述">
+<meta property="og:url" content="http://yoursite.com/2020/07/19/%E6%A6%82%E8%BF%B0/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="My First Post">
+<meta property="og:description" content="基本特征： 并发 并发是指宏观上在一段时间内同时运行多个程序，而并行则指同一时刻能运行多个指令 并行需要硬件支持，如多流水线、多核处理器或者分布式计算系统 操作系统通过引入进程和线程，使得程序能够并发运行  共享 共享是指系统中的资源可以被多个并发进程共同使用 有两种共享方式：互斥共享和同时共享 互斥共享的资源被称为临界资源，如打印机，在同一时刻只允许一个进程访问，需要同步机制来实现互斥访问  虚">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-19T19:37:01.000Z">
-<meta property="article:modified_time" content="2020-07-19T19:59:58.497Z">
+<meta property="article:published_time" content="2020-07-19T20:20:59.000Z">
+<meta property="article:modified_time" content="2020-07-19T20:25:44.644Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="OS">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/07/19/My-First-Post/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/07/19/概述/"/>
 
 
 
 
 
-  <title>My First Post | Hexo</title>
+  <title>操作系统概述 | Hexo</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/My-First-Post/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/%E6%A6%82%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">My First Post</h1>
+          <h1 class="post-title" itemprop="name headline">操作系统概述</h1>
         
 
         <div class="post-meta">
@@ -282,7 +282,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-19T15:37:01-04:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-19T16:20:59-04:00">
                 2020-07-19
               </time>
             
@@ -292,6 +292,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OS/" itemprop="url" rel="index">
+                    <span itemprop="name">OS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -320,7 +342,64 @@
       
 
       
-        <h2 id="My-First-Post"><a href="#My-First-Post" class="headerlink" title="My First Post"></a>My First Post</h2>
+        <h2 id="基本特征："><a href="#基本特征：" class="headerlink" title="基本特征："></a>基本特征：</h2><ol>
+<li><p>并发</p>
+<p>并发是指宏观上在一段时间内同时运行多个程序，而并行则指同一时刻能运行多个指令</p>
+<p>并行需要硬件支持，如多流水线、多核处理器或者分布式计算系统</p>
+<p>操作系统通过引入进程和线程，使得程序能够并发运行</p>
+</li>
+<li><p>共享</p>
+<p>共享是指系统中的资源可以被多个并发进程共同使用</p>
+<p>有两种共享方式：互斥共享和同时共享</p>
+<p>互斥共享的资源被称为临界资源，如打印机，在同一时刻只允许一个进程访问，需要同步机制来实现互斥访问</p>
+</li>
+<li><p>虚拟</p>
+<p>虚拟技术把一个物理实体转换为多个逻辑实体</p>
+<p>主要有两种虚拟技术：时分复用技术和空分复用技术</p>
+<p>多个进程能在同一个处理器上并发执行使用了时分复用技术，让每个进程轮流占用处理器，每次只执行一小个时间片并快速切换</p>
+<p>虚拟内存使用了空分复用技术，它讲物理内存抽象为地址空间，每个进程都有各自的地址空间。地址空间的页被映射到物理内存，地址空间的页并不需要全部在物理内存中，当使用到一个没有在物理内存的页时，执行页面置换算法，将该页置换到内存中</p>
+</li>
+<li><p>异步</p>
+<p>异步指进程不是一次性执行完毕，而是走走停停，以不可知的速度向前推进</p>
+</li>
+</ol>
+<h2 id="基本功能"><a href="#基本功能" class="headerlink" title="基本功能"></a>基本功能</h2><ol>
+<li><p>进程管理</p>
+<p>进程控制、进程同步、进程通信、死锁处理、处理调度</p>
+</li>
+<li><p>内存管理</p>
+<p>内存分配、地址映射、内存保护与共享、虚拟内存</p>
+</li>
+<li><p>文件管理</p>
+<p>文件存储空间的管理、目录管理、文件读写管理和保护</p>
+</li>
+<li><p>设备管理</p>
+<p>完成用户的I/O请求，方便用户使用各种设备，并提高设备的利用率</p>
+<p>主要包括 缓冲管理、设备分配、设备处理、虚拟设备</p>
+</li>
+</ol>
+<h2 id="用户态和内核态"><a href="#用户态和内核态" class="headerlink" title="用户态和内核态"></a>用户态和内核态</h2><ol>
+<li><p>定义</p>
+<p>用户空间就是用户进程所在的内存区域，相对的，系统空间就是操作系统占据的内存区域。用户进程和系统进程的所有数据都在内存中。处于用户态的程序只能访问用户空间，而处于内核态的程序可以访问用户空间和内核空间。</p>
+</li>
+<li><p>用户态切换到内核态的方法</p>
+</li>
+</ol>
+<ul>
+<li>系统调用：程序的执行一般是在用户态下执行的，但当程序需要使用操作系统提供的服务时，比如说打开某一设备、创建文件、读写文件（这些均属于系统调用）等，就需要向操作系统发出调用服务的请求，这就是系统调用。</li>
+<li>异常：当CPU在执行运行在用户态下的程序时，发生了某些事先不可知的异常，这时会触发由当前运行进程切换到处理此异常的内核相关程序中，也就转到了内核态，比如缺页异常。</li>
+<li>外围设备的中断：当外围设备完成用户请求的操作后，会向CPU发出相应的中断信号，这时CPU会暂停执行下一条即将要执行的指令转而去执行与中断信号对应的处理程序，如果先前执行的指令是用户态下的程序，那么这个转换的过程自然也就发生了由用户态到内核态的切换。比如硬盘读写操作完成，系统会切换到硬盘读写的中断处理程序中执行后续操作等。</li>
+</ul>
+<ol start="3">
+<li><p>区别</p>
+<p>权限不一样</p>
+<ul>
+<li>用户态的进程能存取它们自己的指令和数据，但不能存取内核指令和数据（或其他进程的指令和数据<strong>）</strong></li>
+<li>核心态下的进程能够存取内核和用户地址。某些机器指令是特权指令，在用户态下执行特权指令会引起错误。在系统中内核并不是作为一个与用户进程平行的估计的进程的集合。</li>
+</ul>
+</li>
+</ol>
+
       
     </div>
     
@@ -337,7 +416,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+            <a href="/tags/OS/" rel="tag"># OS</a>
           
         </div>
       
@@ -350,8 +429,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/07/19/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2020/07/19/90-Subsets-II/" rel="next" title="90. Subsets II (Medium)">
+                <i class="fa fa-chevron-left"></i> 90. Subsets II (Medium)
               </a>
             
           </div>
@@ -359,10 +438,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/07/19/name/" rel="prev" title="78. Subsets (Medium)">
-                78. Subsets (Medium) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -510,7 +585,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#My-First-Post"><span class="nav-number">1.</span> <span class="nav-text">My First Post</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本特征："><span class="nav-number">1.</span> <span class="nav-text">基本特征：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本功能"><span class="nav-number">2.</span> <span class="nav-text">基本功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户态和内核态"><span class="nav-number">3.</span> <span class="nav-text">用户态和内核态</span></a></li></ol></div>
             
 
           </div>

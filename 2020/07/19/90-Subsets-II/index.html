@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Algorithm," />
+  <meta name="keywords" content="Backtrack," />
 
 
 
@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="My First Post">
+<meta name="description" content="Given a collection of integers that might contain duplicates, nums\, return all possible subsets (the power set). Note: The solution set must not contain duplicate subsets. Example: 12345678910Input:">
 <meta property="og:type" content="article">
-<meta property="og:title" content="My First Post">
-<meta property="og:url" content="http://yoursite.com/2020/07/19/My-First-Post/index.html">
+<meta property="og:title" content="90. Subsets II (Medium)">
+<meta property="og:url" content="http://yoursite.com/2020/07/19/90-Subsets-II/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="My First Post">
+<meta property="og:description" content="Given a collection of integers that might contain duplicates, nums\, return all possible subsets (the power set). Note: The solution set must not contain duplicate subsets. Example: 12345678910Input:">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-19T19:37:01.000Z">
-<meta property="article:modified_time" content="2020-07-19T19:59:58.497Z">
+<meta property="article:published_time" content="2020-07-19T20:14:25.000Z">
+<meta property="article:modified_time" content="2020-07-19T20:18:29.155Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Backtrack">
 <meta name="twitter:card" content="summary">
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/07/19/My-First-Post/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/07/19/90-Subsets-II/"/>
 
 
 
 
 
-  <title>My First Post | Hexo</title>
+  <title>90. Subsets II (Medium) | Hexo</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/My-First-Post/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/90-Subsets-II/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="John Doe">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">My First Post</h1>
+          <h1 class="post-title" itemprop="name headline">90. Subsets II (Medium)</h1>
         
 
         <div class="post-meta">
@@ -282,7 +282,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-19T15:37:01-04:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-19T16:14:25-04:00">
                 2020-07-19
               </time>
             
@@ -292,6 +292,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -320,7 +342,30 @@
       
 
       
-        <h2 id="My-First-Post"><a href="#My-First-Post" class="headerlink" title="My First Post"></a>My First Post</h2>
+        <p>Given a collection of integers that might contain duplicates, <strong><em>nums\</em></strong>, return all possible subsets (the power set).</p>
+<p><strong>Note:</strong> The solution set must not contain duplicate subsets.</p>
+<p><strong>Example:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Input: [1,2,2]</span><br><span class="line">Output:</span><br><span class="line">[</span><br><span class="line">  [2],</span><br><span class="line">  [1],</span><br><span class="line">  [1,2,2],</span><br><span class="line">  [2,2],</span><br><span class="line">  [1,2],</span><br><span class="line">  []</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+
+
+<ol>
+<li><p>递归：在上一题的基础上，增加了重复的元素</p>
+<p>所以在判断中遇到重复元素跳过即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">    <span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">subsetsWithDup</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        sort(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; temp;</span><br><span class="line">        backtrack(nums, <span class="number">0</span>, temp);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">backtrack</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp;nums, <span class="keyword">int</span> first, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; temp)</span></span>&#123;</span><br><span class="line">        res.push_back(temp);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=first; i&lt;nums.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i==first || nums[i]!=nums[i<span class="number">-1</span>])&#123;</span><br><span class="line">                temp.push_back(nums[i]);</span><br><span class="line">                backtrack(nums, i+<span class="number">1</span>, temp);</span><br><span class="line">                temp.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>迭代</p>
+<p>和上一题也类似，需要除去重复的情况，依旧是判断是否是第一个或者前后两个元素是否一样。但需要注意一点，对于相同元素的情况，之前res中加过前一个元素的vector不再考虑，只考虑新加入的，所以j要在新的sz之前赋值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; <span class="title">subsetsWithDup</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        sort(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        res.push_back(&#123;&#125;);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; temp;</span><br><span class="line">        <span class="keyword">int</span> sz = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;nums.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> j = !i||nums[i]!=nums[i<span class="number">-1</span>]?<span class="number">0</span>:sz;</span><br><span class="line">            sz = res.<span class="built_in">size</span>();</span><br><span class="line">            <span class="keyword">for</span>(; j&lt;sz; j++)&#123;</span><br><span class="line">                res.push_back(res[j]);</span><br><span class="line">                res.back().push_back(nums[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
       
     </div>
     
@@ -337,7 +382,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Algorithm/" rel="tag"># Algorithm</a>
+            <a href="/tags/Backtrack/" rel="tag"># Backtrack</a>
           
         </div>
       
@@ -350,8 +395,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/07/19/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2020/07/19/name/" rel="next" title="78. Subsets (Medium)">
+                <i class="fa fa-chevron-left"></i> 78. Subsets (Medium)
               </a>
             
           </div>
@@ -360,8 +405,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2020/07/19/name/" rel="prev" title="78. Subsets (Medium)">
-                78. Subsets (Medium) <i class="fa fa-chevron-right"></i>
+              <a href="/2020/07/19/%E6%A6%82%E8%BF%B0/" rel="prev" title="操作系统概述">
+                操作系统概述 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -414,17 +459,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -500,22 +536,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#My-First-Post"><span class="nav-number">1.</span> <span class="nav-text">My First Post</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
