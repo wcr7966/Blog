@@ -365,14 +365,10 @@
 </ul>
 <p>造成结果：TCB中有许多SYN_RECV状态；CPU使用不多，已经连接的TCP仍然存在，但是不能有新的连接建立</p>
 <p><strong>解决方法：</strong></p>
+<p>SYN Cookies：</p>
 <ul>
-<li><p>SYN Cookies：</p>
-</li>
-<li><ul>
 <li>receiver接收到SYN后，加密信息得到H（密钥只有server知道）</li>
 <li>将H作为seq发给client，如果不是attacker，则会回复ACK=H+1，server检查ACK，建立连接，此时才会分配资源</li>
-</ul>
-</li>
 </ul>
 <p>即：server不存half_open的连接，资源只会分给接收到final ACK的client</p>
 <h2 id="Attack-2-TCP-Reset-Attack"><a href="#Attack-2-TCP-Reset-Attack" class="headerlink" title="Attack 2: TCP Reset Attack"></a>Attack 2: TCP Reset Attack</h2><p><strong>主要思想：</strong>断开TCP的连接</p>
