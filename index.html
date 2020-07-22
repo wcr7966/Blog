@@ -249,6 +249,206 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/21/TCP-IP-Attack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/07/21/TCP-IP-Attack/" itemprop="url">TCP/IP Attack</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-21T23:19:39-04:00">
+                2020-07-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Network</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h3><p>假设A为客户端，B为服务器端：</p>
+<ul>
+<li>首先B处于Listen状态，等待客户的连接请求</li>
+<li>A向B发送连接请求报文，SYN=1，ACK=0，选择一个初始的序号x</li>
+<li>B收到连接请求报文，如果同意建立连接，则向A发送确认连接报文，SYN=1，ACK=1，确认号为x+1，同时也选择一个初始的序号y</li>
+<li>A收到B的连接确认报文后，还要向B发出确认，确认号为y+1，序号为x+1</li>
+<li>B收到A的确认后，连接建立</li>
+</ul>
+<p><strong>为什么要进行第三次握手呢？</strong></p>
+<p>第三次握手是为了防止失效的连接请求到达服务器，让服务器错误打开连接。</p>
+<p>客户端发送的连接请求如果在网络中滞留，那么就会隔很长一段时间才能收到服务器端发回的连接确认。客户端等待一个超时重传时间之后，就会重新请求连接。但是这个滞留的连接请求最后还是会到达服务器，如果不进行三次握手，那么服务器就会打开两个连接。如果有第三次握手，客户端会忽略服务器之后发送的对滞留连接请求的连接确认，不进行第三次握手，因此就不会再次打开连接。</p>
+<p><strong>三次握手的过程中：</strong></p>
+<p>当server收到SYN时，存在TCB中（即为半连接half-open connect）</p>
+<p>当server收到ACK时，从TCB去除，完整的TCP连接存在别处</p>
+<p>如果一直没收到，server会重复发送SYN+ACK，直至最终丢弃TCB</p>
+<h2 id="Attack-1-SYN-Flooding-Attack"><a href="#Attack-1-SYN-Flooding-Attack" class="headerlink" title="Attack 1: SYN Flooding Attack"></a>Attack 1: SYN Flooding Attack</h2><p><strong>主要思想：</strong>使TCB满载从而不能接受新的SYN请求</p>
+<p><strong>实现方法：</strong></p>
+<ul>
+<li>attacker用random IP address</li>
+<li>由于没有真正使用该随机IP的client，server回复SYN+ACK时会被drop，半连接会一直存储在TCB中，直至超时</li>
+</ul>
+<p>造成结果：TCB中有许多SYN_RECV状态；CPU使用不多，已经连接的TCP仍然存在，但是不能有新的连接建立</p>
+<p><strong>解决方法：</strong></p>
+<ul>
+<li><p>SYN Cookies：</p>
+</li>
+<li><ul>
+<li>receiver接收到SYN后，加密信息得到H（密钥只有server知道）</li>
+<li>将H作为seq发给client，如果不是attacker，则会回复ACK=H+1，server检查ACK，建立连接，此时才会分配资源</li>
+</ul>
+</li>
+</ul>
+<p>即：server不存half_open的连接，资源只会分给接收到final ACK的client</p>
+<h2 id="Attack-2-TCP-Reset-Attack"><a href="#Attack-2-TCP-Reset-Attack" class="headerlink" title="Attack 2: TCP Reset Attack"></a>Attack 2: TCP Reset Attack</h2><p><strong>主要思想：</strong>断开TCP的连接</p>
+<p>断开连接有两种方式：</p>
+<ul>
+<li>发送FIN：A发送FIN给B，B回复ACK，关闭A-B的连接；B发送FIN给A，A回复ACK，关闭B-A的连接。此时才完全结束A-B的通信</li>
+<li>发送RST，立刻断开</li>
+</ul>
+<p><strong>实现方法：</strong>attacker伪造RST：通过已知的src，src_port，dst，dst_port，seq</p>
+<p><strong>得到src，src_port，dst，dst_port，seq的方式：</strong></p>
+<ul>
+<li>在Telnet：使用wireshark，嗅探traffic，得到信息</li>
+<li>在SSH：SSH加密只加密data部分，所以可以是可以成功通过sniff&amp;spoof方式得到</li>
+<li>在视频流连接：seq增长的非常快，wireshark抓包后再输入command不可能实现，所以需要自动化攻击，sniff-and-spoof（借助netwox工具）</li>
+</ul>
+<h3 id="Attack3-TCP-Session-Hijacking"><a href="#Attack3-TCP-Session-Hijacking" class="headerlink" title="Attack3: TCP Session Hijacking"></a>Attack3: TCP Session Hijacking</h3><p><strong>主要思想：</strong> inject data  在已经建立好的连接中注入data</p>
+<p><strong>实现方法：</strong> 需要得到src, src_port, dst, dst_port, seq</p>
+<p><strong>利用TCP收包的性质：</strong> 即使包不是按序到达的，也会在buffer中放在正确的位置</p>
+<p><strong>实现方法：</strong></p>
+<ul>
+<li>在已经获得seq=x的基础上，发送x+a（a不能过大），该包会存在对应的位置上，直到前面缺失的包被收到。</li>
+</ul>
+<p><strong>结果：</strong>攻击成功后，如果建立了telnet通道，会造成不管输入什么信息不再会有相应</p>
+<p><strong>原因：</strong> 双方都进入死锁</p>
+<ul>
+<li>server收到spoofed包，若对此包进行回复，会附着seq。但是client还没有发到seq，所以会被drop。Server会认为包丢失了，会重发，然后client会重复drop</li>
+<li>同理，对于Client来说，本应该发送的seq已经被attacker占用了，所以sevrer会drop正确的包，从而对于client来说包也是丢失的，所以会重复发送。</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/19/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -584,6 +784,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Algorithm/" itemprop="url" rel="index">
+                    <span itemprop="name">Algorithm</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -700,7 +922,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -711,7 +933,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -722,7 +944,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
